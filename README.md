@@ -6,7 +6,6 @@
 |------------------ |---------- |------------------------------- |
 |nickname           |string     |null: false                     |
 |email              |string     |null: false                     |
-|password           |references |null: false, foreign_key: true  |
 |encrypted_password |references |null: false, foreign_key: true  |
 |last_name          |string     |null: false                     |
 |first_name         |string     |null: false                     |
@@ -61,7 +60,7 @@
 |prefectures_id |integer    |null: false                    |
 |municipality   |text       |null: false                    |
 |address        |text       |null: false                    |
-|building       |text       |                               |
+|building       |string     |                               |
 |phone_number   |string     |null: false                    |
 |order          |references |null: false, foreign_key: true |
 
