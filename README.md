@@ -6,7 +6,7 @@
 |------------------ |---------- |------------------------------- |
 |nickname           |string     |null: false                     |
 |email              |string     |null: false                     |
-|encrypted_password |references |null: false, foreign_key: true  |
+|encrypted_password |string     |null: false                     |
 |last_name          |string     |null: false                     |
 |first_name         |string     |null: false                     |
 |last_name_kana     |string     |null: false                     |
@@ -58,8 +58,8 @@
 |-------------- |---------- |------------------------------ |
 |postal_code    |string     |null: false                    |
 |prefectures_id |integer    |null: false                    |
-|municipality   |text       |null: false                    |
-|address        |text       |null: false                    |
+|municipality   |string     |null: false                    |
+|address        |string     |null: false                    |
 |building       |string     |                               |
 |phone_number   |string     |null: false                    |
 |order          |references |null: false, foreign_key: true |
