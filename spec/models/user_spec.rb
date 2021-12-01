@@ -33,6 +33,12 @@ RSpec.describe User, type: :model do
         expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
 
+      it 'emailに＠が無い場合は登録できない' do
+        @user.email = 'aaa.email.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
+
       it 'passwordが空の場合登録できいない' do
         @user.password = ''
         @user.valid?
@@ -59,6 +65,21 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
+
+      it 'passwordに英字のみでは登録できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it 'passwordに数字のみでは登録できない' do
+        @user.password = '000000'
+        @user.password_confirmation = '000000'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
 
       it 'last_nameが空では登録できない' do
         @user.last_name = ''
