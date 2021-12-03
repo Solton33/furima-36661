@@ -33,31 +33,61 @@ RSpec.describe Item, type: :model do
       end
 
       it 'カテゴリーが空の場合登録されない' do
-        @item.category = nil
+        @item.category_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be balnk")
+      end
+
+      it 'カテゴリーが『--』の場合登録されない' do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be balnk")
       end
 
       it '商品の状態が空の場合登録されない' do
-        @item.status = nil
+        @item.status_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status can't be balnk")
+      end
+
+      it '商品の状態が『--』の場合登録されない' do
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be balnk")
       end
 
       it '配送料の負担が空の場合登録されない' do
-        @item.delivery_fee = nil
+        @item.delivery_fee_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Delivery fee can't be balnk")
+      end
+
+      it '配送料の負担が『--』の場合登録されない' do
+        @item.delivery_fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery fee can't be balnk")
       end
 
       it '発送元が空の場合登録されない' do
-        @item.prefectures = nil
+        @item.prefectures_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefectures can't be balnk")
+      end
+
+      it '発送元が『--』の場合登録されない' do
+        @item.prefectures_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefectures can't be balnk")
       end
 
       it '発送までの日数が空の場合登録されない' do
-        @item.shipping_date = nil
+        @item.shipping_date_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping date can't be balnk")
+      end
+
+      it '発送までの日数が『--』の場合登録されない' do
+        @item.shipping_date_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping date can't be balnk")
       end
@@ -83,6 +113,13 @@ RSpec.describe Item, type: :model do
         @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+
+      it '出品者がuserと紐づいていなければ登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+
       end
     end
   end
