@@ -99,7 +99,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '価格は半角数値で入力されていない場合登録できない' do
-        @item.price = "２０００"
+        @item.price = "１０００"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
